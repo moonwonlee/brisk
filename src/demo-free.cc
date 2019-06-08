@@ -102,10 +102,10 @@ int main(int argc, char ** argv)
 
   // Convert to grayscale.
   cv::Mat imgGray1;
-  cv::cvtColor(imgRGB1, imgGray1, CV_BGR2GRAY);
+  cv::cvtColor(imgRGB1, imgGray1, cv::COLOR_BGR2GRAY);
   cv::Mat imgGray2;
   if (!do_rot) {
-    cv::cvtColor(imgRGB2, imgGray2, CV_BGR2GRAY);
+    cv::cvtColor(imgRGB2, imgGray2, cv::COLOR_BGR2GRAY);
   }
 
   // Run FAST in first image.
