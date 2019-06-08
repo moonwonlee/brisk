@@ -62,19 +62,19 @@ class DummyTimer;
 
 namespace brisk {
 // This is needed to avoid aliasing issues with the __m128i data type:
-//#ifdef __GNUC__
-typedef unsigned char UCHAR_ALIAS;
-typedef uint16_t UINT16_ALIAS;
-typedef uint32_t UINT32_ALIAS;
-typedef uint64_t UINT64_ALIAS;
-typedef int INT32_ALIAS;
-typedef uint8_t U_INT8T_ALIAS;
-//#endif
-//#ifdef _MSC_VER
+#ifdef __GNUC__
+typedef unsigned char __attribute__ ((__may_alias__)) UCHAR_ALIAS;
+typedef uint16_t __attribute__ ((__may_alias__)) UINT16_ALIAS;
+typedef uint32_t __attribute__ ((__may_alias__)) UINT32_ALIAS;
+typedef uint64_t __attribute__ ((__may_alias__)) UINT64_ALIAS;
+typedef int __attribute__ ((__may_alias__)) INT32_ALIAS;
+typedef uint8_t __attribute__ ((__may_alias__)) U_INT8T_ALIAS;
+#endif
+#ifdef _MSC_VER
 // TODO(lestefan): Find the equivalent to may_alias.
-//#define UCHAR_ALIAS unsigned char  // __declspec(noalias)
-//#define UINT32_ALIAS unsigned int  // __declspec(noalias)
+#define UCHAR_ALIAS unsigned char  // __declspec(noalias)
+#define UINT32_ALIAS unsigned int  // __declspec(noalias)
 #define __inline__ __forceinline
-//#endif
+#endif
 }  // namespace brisk
 #endif  // INTERNAL_MACROS_H_
